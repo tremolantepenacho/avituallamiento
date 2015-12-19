@@ -36,7 +36,8 @@ public class Avituallamiento {
 
                 int avituallamiento=-1;
                 int distancia=0;
-                for (int i=0;i<(km.length-1);i++){
+                int i=0;
+                while ((i<km.length-1) && (km.length-1-i>distancia)){
                     int j=i+1;
                     while (km[i]==km[j]){
                         j++;
@@ -45,9 +46,10 @@ public class Avituallamiento {
                         distancia=j-i-1;
                         avituallamiento=i;
                     }
+                    i++;
                 }
                 if (avituallamiento==-1) System.out.println("HOY NO COMEN");
-                else System.out.println(distancia+" "+avituallamiento);
+                else System.out.println(avituallamiento+" "+distancia);
                 entrada = br.readLine();
             }
         } catch (IOException ex) {
