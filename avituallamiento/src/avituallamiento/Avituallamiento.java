@@ -5,6 +5,12 @@
  */
 package avituallamiento;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author hector
@@ -15,7 +21,39 @@ public class Avituallamiento {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        try {
+            // TODO code application logic here
+            
+            InputStreamReader isr = new InputStreamReader(System.in);
+            BufferedReader br = new BufferedReader (isr);
+            String entrada = br.readLine();
+            while (entrada.compareTo("-1")!=0){
+                String puntos[]=entrada.split(" ");
+                int km[]=new int[puntos.length];
+                for (int i=0;i<puntos.length;i++){
+                    km[i]=Integer.parseInt(puntos[i]);
+                }
+
+                int avituallamiento=-1;
+                int distancia=0;
+                for (int i=0;i<(km.length-1);i++){
+                    int j=i+1;
+                    while (km[i]==km[j]){
+                        j++;
+                    }
+                    if (distancia<(j-i-1)){
+                        distancia=j-i-1;
+                        avituallamiento=i;
+                    }
+                }
+                if (avituallamiento==-1) System.out.println("HOY NO COMEN");
+                else System.out.println(distancia+" "+avituallamiento);
+                entrada = br.readLine();
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Avituallamiento.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     
 }
