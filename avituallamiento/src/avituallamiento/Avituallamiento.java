@@ -46,14 +46,14 @@ public class Avituallamiento {
                         distancia=j-i-1;
                         avituallamiento=i;
                     }
-                    i++;
+                    i=j;
                 }
                 if (avituallamiento==-1) System.out.println("HOY NO COMEN");
                 else System.out.println(avituallamiento+" "+distancia);
                 entrada = br.readLine();
             }
         } catch (IOException ex) {
-            Logger.getLogger(Avituallamiento.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error");
         }
         
     }
