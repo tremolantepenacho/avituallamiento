@@ -8,6 +8,8 @@ package avituallamiento;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -27,7 +29,6 @@ public class Avituallamiento {
             String entrada = br.readLine();
             while (entrada.compareTo("-1")!=0){
                 String puntos[]=entrada.split(" ");
-                entrada="";
                 int km[]=new int[puntos.length];
                 for (int i=0;i<puntos.length;i++){
                     km[i]=Integer.parseInt(puntos[i]);
@@ -45,15 +46,14 @@ public class Avituallamiento {
                         distancia=j-i-1;
                         avituallamiento=i;
                     }
-                    i=j;
-                    //i++;
+                    i++;
                 }
                 if (avituallamiento==-1) System.out.println("HOY NO COMEN");
                 else System.out.println(avituallamiento+" "+distancia);
                 entrada = br.readLine();
             }
         } catch (IOException ex) {
-            System.out.println("Error de lectura");
+            Logger.getLogger(Avituallamiento.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
