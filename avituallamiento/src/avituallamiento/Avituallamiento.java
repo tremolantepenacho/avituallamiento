@@ -5,11 +5,7 @@
  */
 package avituallamiento;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Scanner;
 
 /**
  *
@@ -21,39 +17,42 @@ public class Avituallamiento {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        try {
-            // TODO code application logic here
-            
-            InputStreamReader isr = new InputStreamReader(System.in);
-            BufferedReader br = new BufferedReader (isr);
-            String entrada = br.readLine();
-            while (entrada.compareTo("-1")!=0){
-                String puntos[]=entrada.split(" ");
-                int km[]=new int[puntos.length];
-                for (int i=0;i<puntos.length;i++){
-                    km[i]=Integer.parseInt(puntos[i]);
-                }
-
-                int avituallamiento=-1;
-                int distancia=0;
-                int i=0;
-                while ((i<km.length-1) && (km.length-1-i>distancia)){
-                    int j=i+1;
-                    while (km[i]==km[j]){
-                        j++;
-                    }
-                    if (distancia<(j-i-1)){
-                        distancia=j-i-1;
-                        avituallamiento=i;
-                    }
-                    i=j;
-                }
-                if (avituallamiento==-1) System.out.println("HOY NO COMEN");
-                else System.out.println(avituallamiento+" "+distancia);
-                entrada = br.readLine();
+        Scanner teclado= new Scanner(System.in);
+        int distancia=0;
+        int distanciaTemp=0;
+        int avituallamiento=-1;
+        int km=0;
+        int anterior=teclado.nextInt();
+        int dato=teclado.nextInt();
+        do {  
+            km++;
+            if (dato==anterior) {
+                distanciaTemp++;
             }
-        } catch (IOException ex) {
-            System.out.println("Error");
+            else {
+                    if (distanciaTemp>distancia) {
+                        distancia=distanciaTemp;
+                        avituallamiento=km-distancia-1;
+                    }
+                    anterior=dato;
+                    distanciaTemp=0;
+                    
+                  
+                    
+            }
+            dato=teclado.nextInt();
+            
+        }
+        while (dato!=-1);
+        if (distanciaTemp>distancia) {
+                        distancia=distanciaTemp;
+                        avituallamiento=km-distancia;
+                    }
+        if (distancia<1){
+            System.out.println("Hoy no comen");
+        }
+        else {
+            System.out.println(avituallamiento+" "+distancia);
         }
         
     }
