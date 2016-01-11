@@ -23,38 +23,43 @@ public class Avituallamiento {
         int avituallamiento=-1;
         int km=0;
         int anterior=teclado.nextInt();
-        int dato=teclado.nextInt();
-        do {  
-            km++;
-            if (dato==anterior) {
-                distanciaTemp++;
+        while (anterior!=-1){
+            int dato=teclado.nextInt();
+            do {  
+                km++;
+                if (dato==anterior) {
+                    distanciaTemp++;
+                }
+                else {
+                        if (distanciaTemp>distancia) {
+                            distancia=distanciaTemp;
+                            avituallamiento=km-distancia-1;
+                        }
+                        anterior=dato;
+                        distanciaTemp=0;
+
+
+
+                }
+                dato=teclado.nextInt();
+
+            }
+            while (dato!=-1);
+            if (distanciaTemp>distancia) {
+                            distancia=distanciaTemp;
+                            avituallamiento=km-distancia;
+                        }
+            if (distancia<1){
+                System.out.println("Hoy no comen");
             }
             else {
-                    if (distanciaTemp>distancia) {
-                        distancia=distanciaTemp;
-                        avituallamiento=km-distancia-1;
-                    }
-                    anterior=dato;
-                    distanciaTemp=0;
-                    
-                  
-                    
+                System.out.println(avituallamiento+" "+distancia);
             }
-            dato=teclado.nextInt();
-            
+            distancia=0;
+            distanciaTemp=0;
+            avituallamiento=-1;
+            km=0;
+            anterior=teclado.nextInt();
         }
-        while (dato!=-1);
-        if (distanciaTemp>distancia) {
-                        distancia=distanciaTemp;
-                        avituallamiento=km-distancia;
-                    }
-        if (distancia<1){
-            System.out.println("Hoy no comen");
-        }
-        else {
-            System.out.println(avituallamiento+" "+distancia);
-        }
-        
     }
-    
 }
